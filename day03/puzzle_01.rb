@@ -1,21 +1,22 @@
-# lines = ['.#..#.....#....##..............',
-#           '......#...#..#.....#.#....#...#'
-#         ]
-STEP_RIGHT = 3
-STEP_DOWN = 1
+LINES = ['.#..#.....#....##..............',
+         '...#.#...#...#.#..........#....',
+         '#...###...#.#.....#.##.#.#...#.']
 TREE = '#'.freeze
 
-line_number = 1
-position = 3
-count = 0
+def count_trees(step_right, step_down)
+  line_number = step_down
+  position = step_right
+  count = 0
 
-while line_number <= lines.size - 1
-  current_line = lines[line_number]
-  position -= current_line.length if position > current_line.length - 1
-  count += 1 if current_line[position] == TREE
+  while line_number <= LINES.size - 1
+    current_line = LINES[line_number]
+    position -= current_line.length if position > current_line.length - 1
+    count += 1 if current_line[position] == TREE
 
-  line_number += STEP_DOWN
-  position += STEP_RIGHT
+    line_number += step_down
+    position += step_right
+  end
+  count
 end
 
-puts count
+puts count_trees(3, 1)
